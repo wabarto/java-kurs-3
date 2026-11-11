@@ -5,7 +5,7 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         // Press Opt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
+        // IntelliJ IDEA suggests fixing it 11.
         System.out.printf(" Hello and welcome! "); // 123
 
         // Press Ct rl+R or click the green arrow button  in the gutter to run the code.
