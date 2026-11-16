@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -128,6 +129,68 @@ public class Main {
 
         // tak jest poprawnie
         System.out.println(text2.equals(text4));
+
+
+        String rawNumber = "    pl01 2345 6789  ";
+
+        System.out.println(rawNumber.strip());
+        System.out.println(rawNumber.trim());
+        System.out.println(rawNumber.isBlank());
+        System.out.println(rawNumber.length());
+        System.out.println(rawNumber.contains("2345"));
+        System.out.println(rawNumber.toUpperCase());
+        System.out.println(rawNumber.toLowerCase());
+        System.out.println(rawNumber.replace(" ", ""));
+        System.out.println(rawNumber.substring(2, 6));
+        System.out.println(rawNumber.substring(2));
+        System.out.println(rawNumber.charAt(5));
+        System.out.println(rawNumber.indexOf("2345"));
+        System.out.println(rawNumber.indexOf("xyz"));
+        System.out.println(rawNumber.startsWith("pl"));
+        System.out.println(rawNumber.endsWith("pl"));
+        String[] strings = rawNumber.split(" ");
+
+        for (int j = 0; j < strings.length; j++) {
+            System.out.print(strings[j] + " ");
+        }
+
+        System.out.println(rawNumber.equalsIgnoreCase("    PL01 2345 6789  "));
+
+
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Wyplata: ");
+//        int amount1 = scanner.nextInt();
+//
+//        // 1
+//        scanner.nextLine();
+//
+//        System.out.println("Tytuł: ");
+//        String title = scanner.nextLine();
+//        System.out.println("Tytul: " + title);
+
+
+        // 2
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Wyplata: ");
+        int amount1 = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Tytuł: ");
+        String title = scanner.nextLine();
+        System.out.println("Tytul: " + title);
+
+        // text block
+        String tekst = """
+                12322
+                12112
+                121221
+                """;
+
+        System.out.println(tekst);
+
+
+
+
+
 
 
     }
