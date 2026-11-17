@@ -189,9 +189,74 @@ public class Main {
 
 
 
+        int balance1 = 100;
+
+        if (balance1 > 50) {
+            balance1 = balance1 * 2;
+        }
 
 
+        if (!(balance1 > 150 || balance1 == 0)) {
+            balance1 = balance1 + 100;
+        }
 
 
+        if (balance1 > 150 && balance1 < 300) {
+            balance1 = balance1 + 100;
+        }
+
+
+        // stara skladnia
+        int option = 2;
+        String label;
+
+        switch (option) {
+            case 1: label = "1"; break;
+            case 2: label = "2"; break;
+            default: label = "UNKNOWN"; break;
+
+        }
+
+
+        String newLabel = switch (option) {
+            case 1 -> {
+                System.out.println("test");
+                yield "1";
+            }
+            case 2 -> "2";
+            default -> "UNKNOWN";
+        };
+
+
+        // warunek ? wartoscGdyPrawda : wartoscGdyFalsz - to jest wyrazenie, ktore zwraca wartosc
+
+        boolean active1 = true;
+        String accountNumber = "PL01";
+
+        String status = active1 ? "AKTYWNE" : "ZABLOKOWANE";
+
+
+        String displayNumber = accountNumber != null ? accountNumber : "brak";
+
+        // tak nie robimy
+        String tier = balance1 > 10000 ? calculateTier() : (balance > 1000 ? "standard" : (balance > 0 ? "basic" : "debt"));
+
+
+        // tak robimy jesli mamy wiele warunkow
+        if (balance1 > 10000) {
+            tier = "premium";
+        } else if (balance1 > 1000) {
+            tier = "standard";
+        } else if (balance > 0) {
+            tier = "basic";
+        } else {
+            tier = "debt";
+        }
+
+    }
+
+    static String calculateTier() {
+        System.out.println("tier");
+        return "premium";
     }
 }
