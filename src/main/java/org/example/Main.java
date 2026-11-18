@@ -253,6 +253,70 @@ public class Main {
             tier = "debt";
         }
 
+
+        for (int j = 0; j < 3; j++) {
+            System.out.println(j);
+        }
+
+        for (int j = 3; j >= 1; j--) {
+            System.out.println(j);
+        }
+
+        for (int j = 50; j <= 500; j += 50) {
+            System.out.println(j);
+        }
+
+
+        int balance3 = 0;
+        while (balance3 > 100) {
+            System.out.println("To sie nie wykona");
+        }
+
+        int attempt = 0;
+
+        do {
+            attempt++;
+            System.out.println("attempt: " + attempt);
+        } while (attempt < 3);
+
+        int[] array = {500, 200, 100, 50};
+
+        for (int element : array) {
+            System.out.println(element);
+        }
+
+
+        for (int j = 0; j < 4; j++) {
+            if (j == 2) {
+                System.out.println("do something");
+                break;
+            }
+            System.out.println(j);
+        }
+
+        for (int j = 0; j < 4; j++) {
+            if (j == 2) {
+                System.out.println("do something");
+                continue;
+            }
+            System.out.println(j);
+        }
+
+        // break - przerywa petle natychmiast
+        // continue - pomija reszte biezacej iteracji i przechodzi do nastepnej
+
+        int n = 1000;
+        int operations = 0;
+
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < n; k++) {
+                operations++;
+            }
+        }
+
+        System.out.println(operations);
+
+
     }
 
     static String calculateTier() {
