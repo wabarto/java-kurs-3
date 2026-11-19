@@ -317,6 +317,115 @@ public class Main {
         System.out.println(operations);
 
 
+
+        // arrays
+
+        int[] g = {1, 2, 3}; // z wartosciami
+
+        int[] t = new int[5]; // z rozmiarem
+
+        int[] z;
+        z = new int[]{1, 2, 3}; // rozdzielnie, deklaracja a potem przypisanie
+
+        System.out.println(z.length);
+
+//        System.out.println(z[3]);
+
+
+        int[] amounts = {100, 200, 500};
+
+        int sum = 0;
+
+        for (int amt : amounts) {
+            sum += amt;
+        }
+
+        for (int amt : amounts) {
+            amt = 0;
+        }
+
+        System.out.println(Arrays.toString(amounts));
+
+        for (int j = 0; j < amounts.length; j++) {
+            amounts[j] = 0;
+        }
+
+        System.out.println(Arrays.toString(amounts));
+
+
+        // FAKE
+        int[] fakeCopy = amounts;
+        fakeCopy[0] = 999;
+        System.out.println(amounts[0]);
+
+
+        // REAL
+
+        int[] realCopy = Arrays.copyOf(amounts, amounts.length);
+        realCopy[0] = 1;
+        System.out.println(amounts[0]);
+
+        int[] sorted = Arrays.copyOf(amounts, amounts.length);
+        Arrays.sort(sorted);
+
+        System.out.println(amounts); // oryginal
+        System.out.println(sorted); // rosnaco
+
+        int[] lastThree = Arrays.copyOfRange(amounts, 1, 3);
+        System.out.println(Arrays.toString(lastThree));
+        System.out.println(Arrays.toString(amounts));
+
+        Arrays.fill(amounts, 0);
+        System.out.println(Arrays.toString(amounts));
+
+        int[][] weekly = new int[3][7];
+        // weekly[row][column]
+        // liczba wierszy to weekly.length
+        System.out.println(weekly.length);
+        // weekly[0].length
+
+        // tablica poszarpana
+        int[][] weekly1 = {
+                {100, 200, 300, 400},
+                {200, 100, 300},
+                {600, 250, 300, 1, 5}
+        };
+
+        System.out.println(weekly1[2][3]);
+
+        for (int row = 0; row < weekly1.length; row++) {
+            for (int column = 0; column < weekly1[row].length; column++) {
+                System.out.print(weekly1[row][column] + " ");
+            }
+            System.out.println();
+
+        }
+
+
+
+
+
+        // m[r][c] - > m[c][r]
+        // 7 x 4 -> 4 x 7
+        // new int[columns][rows]
+
+
+        int rows = weekly.length;
+        int cols = weekly[0].length;
+
+        int[][] transposed = new int[cols][rows];
+
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                transposed[col][row] = weekly[row][col];
+            }
+        }
+
+        for (int[] line : transposed) {
+            System.out.println(Arrays.toString(line));
+        }
+
+
     }
 
     static String calculateTier() {
