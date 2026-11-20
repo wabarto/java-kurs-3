@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+
+    private static int operationCount = 0; // POLE KLASY - widoczne w calej klasie
+
     public static void main(String[] args) {
         int balance = 100_00;
         double balanceInCents = 0.03;
@@ -422,14 +425,149 @@ public class Main {
         }
 
         for (int[] line : transposed) {
+            int m = 0; // zmienna blokowa - dostepna tylko w tym bloki
             System.out.println(Arrays.toString(line));
         }
 
+        int m = 5;
+        increase(5);
+        System.out.println(m);
 
+        int[] numbers = {1, 2, 3};
+        zeroFirst(numbers);
+        System.out.println(numbers[0]);
+
+        replace(numbers);
+        System.out.println(Arrays.toString(numbers));
+
+
+        System.out.println(factorial(4));
+
+//        broken(5); - StackOverflowError
+
+
+        long start = System.nanoTime();
+        System.out.println(fibonacciRecursive(40));
+        System.out.println("Rekurencyjnie: " + (System.nanoTime() - start) / 1_000_000);
+
+        start = System.nanoTime();
+        System.out.println(fibonacciIterative(40));
+        System.out.println("Iteracyjnie: " + (System.nanoTime() - start) / 1_000_000);
+
+
+        System.out.println(power(2, 10));
+
+
+    }
+
+
+    // metoda zmienia swoja kopie a nie oryginal - typy proste
+    public static void increase(int number) {
+        number = number + 100;
+    }
+
+    // metoda moze zmienic wartosc obiektu
+    public static void zeroFirst(int[] array) {
+        array[0] = 0;
+    }
+
+    // metoda nie moze podmienic samego obiektu
+    public static void replace(int[] array) {
+        array = new int[]{9, 9, 9};
     }
 
     static String calculateTier() {
+        int a = 0; // zmienna lokalne - widoczna w tej metodzie
         System.out.println("tier");
         return "premium";
     }
+
+
+    // przeciazenie
+    public static String formatAccount(int cents) {
+        return "cents: " + cents;
+    }
+
+    public static String formatAccount(int cents, String currency) {
+        return "cents: " + cents + " currency: " + currency;
+    }
+
+    public static String formatAccount(int cents, boolean withSign) {
+        String sign = withSign && cents > 0 ? "+" : "";
+        return sign + formatAccount(cents);
+    }
+
+    public static String formatAccount(String currency, int cents) {
+        return "cents: " + cents + " currency: " + currency;
+    }
+
+
+    // tak sie nie da
+//    public static int formatAccount(int cents, String currency) {
+//        return 1;
+//    }
+
+
+    public static long factorial(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("n musi byc >= 0");
+        }
+
+        if (n <= 1) { // warunek bazowy
+            return 1;
+        }
+
+        return n * factorial(n - 1); // krok rekurencyjny
+    }
+
+    // niepoprawna rekurencja
+    public static long broken(int n) {
+        return n * broken(n - 1);
+    }
+
+
+    public static long fibonacciRecursive(int n) {
+        if (n <= 1) {
+            return n;
+        }
+
+        return fibonacciRecursive(n -1) + fibonacciRecursive(n - 2);
+    }
+
+    public static long fibonacciIterative(int n) {
+        if (n <= 1) {
+            return n;
+        }
+
+        long previous = 0;
+        long current = 1;
+
+        for (int i = 2; i <= n; i++) {
+            long next = previous + current;
+            previous = current;
+            current = next;
+        }
+
+        return current;
+    }
+
+
+    // x ^ 8 = (x^4)^2, a x^4 = (x^2)^2
+    public static double power(double base, int exp) {
+        if (exp == 0) {
+            return 1;
+        }
+
+        if (exp < 0) {
+            return 1.0 / power(base, -exp);
+        }
+
+        if (exp % 2 == 0) {
+            double half = power(base, exp / 2);
+            return half * half;
+        }
+
+        return base * power(base, exp - 1);
+    }
+
 }
