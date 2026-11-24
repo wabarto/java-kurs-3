@@ -6,9 +6,12 @@ import java.util.List;
 public class AccountMain {
     public static void main(String[] args) {
         BankAccount account = new BankAccount("PL01", 1000);
+        BankAccount account2 = new BankAccount("PL01", 1000);
+
+        BankAccount account1 = BankAccount.open(1000);
+//        BankAccount account = BankAccount.openWithBonus(1000);
+
         System.out.println(account.getBalance());
-
-
 
         // final znaczy ze zmienna zawsze wskazuje na ten sam obiekt
         final List<String> list = new ArrayList<>();
@@ -35,6 +38,27 @@ public class AccountMain {
         account.getHistory().clear();
 
         System.out.println(account.getHistory());
+
+        BankAccount.getAccountsCreated();
+
+        account.depositAll();
+        account.depositAll(10, 20, 50);
+        account.depositAll(10);
+
+
+        // this moze byc zwrocony w metodzie
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("1").append("1");
+        String text = stringBuilder.toString();
+        System.out.println(text);
+
+
+        System.out.println(account);
+        System.out.println(account == account1);
+        System.out.println(account.equals(account2));
+
+        System.out.println(account.getClass());
+        System.out.println(account.getClass().getSimpleName());
 
     }
 }
