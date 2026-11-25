@@ -138,5 +138,15 @@ public class BankAccount {
 
     }
 
+    public String getDescription() {
+        return String.format("%s: %.2f zł", accountNumber, balance);
+    }
+
+
+    // final na metodzie - nie da sie jej nadpisac
+    public final String formatBalance() {
+        return String.format("%.2f PLN", balance);
+    }
+
 
 }

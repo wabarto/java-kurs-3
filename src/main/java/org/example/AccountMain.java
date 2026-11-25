@@ -60,5 +60,37 @@ public class AccountMain {
         System.out.println(account.getClass());
         System.out.println(account.getClass().getSimpleName());
 
+        BankAccount savingsAccount = new SavingsAccount("PL01", 1000, 0.03);
+        System.out.println(savingsAccount.getDescription());
+
+        List<BankAccount> accounts = List.of(
+                new BankAccount("PL01", 1000),
+                new SavingsAccount("PL02", 5000, 0.03),
+                new CheckingAccount("PL03", 1000, 5.0),
+                new SavingsAccount("PL04", 1000, 0.05)
+        );
+
+        for (BankAccount acc : accounts) {
+            System.out.println(acc.getDescription());
+        }
+
+        double sum = 0;
+        for (BankAccount acc : accounts) {
+            sum += acc.getBalance();
+        }
+
+        System.out.printf("Środki w banku: %.2f zł%n", sum);
+
+        // downcasting - rzutowanie w dol hierarchii czyli z typu ogolnego na typ konkretny
+
+        // wersja niebiezpieczna
+        SavingsAccount s = (SavingsAccount) account;
+
+        // wersja bezpieczna z instanceOf
+        if (account instanceof SavingsAccount s1) {
+            s.addInterest();
+            System.out.println(s1.getDescription());
+        }
+
     }
 }
