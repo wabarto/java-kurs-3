@@ -5,10 +5,11 @@ import java.util.List;
 
 public class AccountMain {
     public static void main(String[] args) {
-        BankAccount account = new BankAccount("PL01", 1000);
-        BankAccount account2 = new BankAccount("PL01", 1000);
-
-        BankAccount account1 = BankAccount.open(1000);
+        BankAccount account = new SavingsAccount("PL01", 1000, 0.03);
+        BankAccount account1 = new SavingsAccount("PL01", 1000, 0.5);
+        BankAccount account2 = new CheckingAccount("PL01", 1000, 0.5);
+//
+//        BankAccount account1 = BankAccount.open(1000);
 //        BankAccount account = BankAccount.openWithBonus(1000);
 
         System.out.println(account.getBalance());
@@ -64,7 +65,7 @@ public class AccountMain {
         System.out.println(savingsAccount.getDescription());
 
         List<BankAccount> accounts = List.of(
-                new BankAccount("PL01", 1000),
+                new SavingsAccount("PL01", 1000, 0.03),
                 new SavingsAccount("PL02", 5000, 0.03),
                 new CheckingAccount("PL03", 1000, 5.0),
                 new SavingsAccount("PL04", 1000, 0.05)
@@ -91,6 +92,24 @@ public class AccountMain {
             s.addInterest();
             System.out.println(s1.getDescription());
         }
+
+
+        TransactionHistory history = new TransactionHistory();
+        history.record("1");
+        history.record("2");
+
+//        history.remove(0);
+//        history.set(0, "WPLATA +9999");
+//        history.clear();
+//
+
+
+        // overload - przeciazenie - kilka metod o tej samej nazwie, roznych parametrach, kompilator wybiera po typach argumentow
+        // override - przeslanianie - podklasa definiuje metode o tej sygnaturze i zastepuje jej dzialanie
+
+
+
+
 
     }
 }

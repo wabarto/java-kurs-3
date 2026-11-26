@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class BankAccount {
+abstract class BankAccount {
     private final String accountNumber; // final - ustawiany raz
     private double balance; // private - niedostepne z zewnatrz
     private static int accountsCreated = 0; // jedno na klase
@@ -54,16 +54,20 @@ public class BankAccount {
         this.history.addAll(other.history);
     }
 
-    // metoda wytworcza - statyczna metoda zwracajaca obiekt swojej klasy
-    public static BankAccount open(double initialBalance) {
-        return new BankAccount("PL" + ++nextNumber, initialBalance);
-    }
+    public abstract String getAccountType();
 
-    public static BankAccount openWithBonus(double initialBalance) {
-        BankAccount account = open(initialBalance);
-        account.deposit(150);
-        return account;
-    }
+    public abstract double getMonthlyCost();
+
+    // metoda wytworcza - statyczna metoda zwracajaca obiekt swojej klasy
+//    public static BankAccount open(double initialBalance) {
+//        return new BankAccount("PL" + ++nextNumber, initialBalance);
+//    }
+
+//    public static BankAccount openWithBonus(double initialBalance) {
+//        BankAccount account = open(initialBalance);
+//        account.deposit(150);
+//        return account;
+//    }
 
     public double getBalance() {
         return balance;
@@ -82,12 +86,20 @@ public class BankAccount {
         balance -= amount;
     }
 
+
+    // overload
     public void deposit(double amount) {
+        deposit(amount, "WPŁATA");
+    }
+
+    // overload
+    public void deposit(double amount, String description) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Kwota wplaty musi byc dodatnia");
         }
 
         balance += amount;
+        history.add(description);
     }
 
 //    public void setBalance(double balance) {

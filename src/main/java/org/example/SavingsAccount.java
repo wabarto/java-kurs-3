@@ -18,6 +18,16 @@ public class SavingsAccount extends BankAccount {
     }
 
     @Override
+    public String getAccountType() {
+        return "savings";
+    }
+
+    @Override
+    public double getMonthlyCost() {
+        return 0.0;
+    }
+
+    @Override
     public String getDescription() {
         return super.getDescription() + " savings";
     }
