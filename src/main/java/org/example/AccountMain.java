@@ -107,6 +107,21 @@ public class AccountMain {
         // overload - przeciazenie - kilka metod o tej samej nazwie, roznych parametrach, kompilator wybiera po typach argumentow
         // override - przeslanianie - podklasa definiuje metode o tej sygnaturze i zastepuje jej dzialanie
 
+        InterestPolicy policy = new PremiumInterest();
+        System.out.println(policy.calculate(20_000));
+
+
+        // lambda
+        // (parametry) -> cialo
+
+
+        InterestPolicy noPolicy = balance -> 0;
+        InterestPolicy standard = balance -> balance * 0.03;
+        InterestPolicy premium = balance -> balance > 10_000 ? balance * 0.05 : balance * 0.03;
+
+        new TransferService(new SmsNotifier("+48534623222")).transfer(account1, account2, 100);
+        new TransferService(new EmailNotifier("test@gmail.com")).transfer(account1, account2, 100);
+
 
 
 
